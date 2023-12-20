@@ -10,10 +10,10 @@ def AllProdCat(request, c_slug=None):
     products_list = None
     if c_slug is not None:
         c_page = get_object_or_404(Category, slug=c_slug)
-        products_list = Product.objects.all().filter(Category=c_page, available=True)
+        products_list = Product.objects.all().filter(category=c_page, available=True)
     else:
         products_list = Product.objects.all().filter(available=True)
-        paginator = Paginator(products_list, 6)
+    paginator = Paginator(products_list, 6)
     try:
         page = int(request.GET.get('page', '1'))
     except:
